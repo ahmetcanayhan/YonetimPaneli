@@ -1,4 +1,4 @@
-﻿@model UI.Models.IndexViewModel
+﻿@model Core.Concrete.Entities.ApplicationUser
 @{
     ViewBag.Title = "Manage";
 }
@@ -23,7 +23,7 @@
             <!-- Account -->
             <div class="card-body">
                 <div class="d-flex align-items-start align-items-sm-center gap-4">
-                    <img src="../assets/img/avatars/1.png"
+                    <img src="@(Model.ProfilePicture??"../assets/img/avatars/avatar.png")"
                          alt="user-avatar"
                          class="d-block rounded"
                          height="100"
@@ -53,45 +53,22 @@
                 <form id="formAccountSettings" method="POST" onsubmit="return false">
                     <div class="row">
                         <div class="mb-3 col-md-6">
-                            <label for="firstName" class="form-label">First Name</label>
-                            <input class="form-control"
-                                   type="text"
-                                   id="firstName"
-                                   name="firstName"
-                                   value="John"
-                                   autofocus />
+                            @Html.LabelFor(m => m.FirstName, new {@class = "form-label" })
+                            @Html.EditorFor(m => m.FirstName, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                         <div class="mb-3 col-md-6">
-                            <label for="lastName" class="form-label">Last Name</label>
-                            <input class="form-control" type="text" name="lastName" id="lastName" value="Doe" />
+                            @Html.LabelFor(m => m.LastName, new { @class = "form-label" })
+                            @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                         <div class="mb-3 col-md-6">
-                            <label for="email" class="form-label">E-mail</label>
-                            <input class="form-control"
-                                   type="text"
-                                   id="email"
-                                   name="email"
-                                   value="john.doe@example.com"
-                                   placeholder="john.doe@example.com" />
+                            @Html.LabelFor(m => m.Email, new { @class = "form-label" })
+                            @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control", @disabled = true } })
                         </div>
+
                         <div class="mb-3 col-md-6">
-                            <label for="organization" class="form-label">Organization</label>
-                            <input type="text"
-                                   class="form-control"
-                                   id="organization"
-                                   name="organization"
-                                   value="ThemeSelection" />
+                            @Html.LabelFor(m => m.PhoneNumber, new { @class = "form-label" })
+                            @Html.EditorFor(m => m.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label" for="phoneNumber">Phone Number</label>
-                            <div class="input-group input-group-merge">
-                                <span class="input-group-text">US (+1)</span>
-                                <input type="text"
-                                       id="phoneNumber"
-                                       name="phoneNumber"
-                                       class="form-control"
-                                       placeholder="202 555 0111" />
-                            </div>
                         </div>
                         <div class="mb-3 col-md-6">
                             <label for="address" class="form-label">Address</label>
