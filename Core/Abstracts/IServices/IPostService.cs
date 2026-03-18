@@ -10,8 +10,9 @@ namespace Core.Abstracts.IServices
 {
     public interface IPostService
     {
-        IEnumerable<PostListItemDto> GetPostList();
+        IEnumerable<PostListItemDto> GetPostList(string authorId);
         PostDetailDto GetPostDetail(int id);
+        UpdatePostDto GetPostEdit(int id);
 
         void CreatePost(NewPostDto newPost);
         void UpdatePost(UpdatePostDto newPost);

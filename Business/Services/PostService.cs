@@ -20,9 +20,9 @@ namespace Business.Services
             unitOfWork = new UnitOfWork(context);
         }
 
-        public IEnumerable<PostListItemDto> GetPostList()
+        public IEnumerable<PostListItemDto> GetPostList(string authorId)
         {
-            var posts = unitOfWork.PostRepository.ReadMany(null, "Tags", "Author");
+            var posts = unitOfWork.PostRepository.ReadMany(x => x.AuthorId == authorId, "Tags", "Author");
             return from post in posts
                    select new PostListItemDto
                    {
@@ -98,6 +98,24 @@ namespace Business.Services
                 unitOfWork.PostRepository.Update(post);
                 unitOfWork.Commit();
             } 
+        }
+
+        public UpdatePostDto GetPostEdit(int id)
+        {
+            var post = unitOfWork.PostRepository.ReadById(id);
+            if (post != null)
+            {
+                return new UpdatePostDto
+                {
+                    Id = post.Id,
+                    Title = post.Title,
+                    Content = post.Content,
+                    AuthorId = post.AuthorId,
+                    CoverImageUrl = post.CoverImageUrl,
+                    IsDraft = !post.Active
+                };
+            }
+            return null;
         }
     }
 }
