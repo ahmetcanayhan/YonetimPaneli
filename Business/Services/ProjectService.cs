@@ -96,6 +96,8 @@ namespace Business.Services
                 PublishDate = model.PublishDate,
                 CreatedAt = DateTime.UtcNow
             };
+            unitOfWork.ProjectRepository.Create(project);
+            unitOfWork.Commit();
         }
 
         public void UpdateProject(UpdateProjectDto model)
