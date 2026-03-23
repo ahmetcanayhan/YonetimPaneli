@@ -1,4 +1,5 @@
 ﻿using Core.Abstracts.IRepositories;
+using Core.Abstracts.IServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace Core.Abstracts
     {
         IPostRepository PostRepository { get; }
         ITagRepository TagRepository { get; }
+        IProjectRepository ProjectRepository { get; }
+        ICategoryRepository CategoryRepository { get; }
         void Commit();
     }
 }

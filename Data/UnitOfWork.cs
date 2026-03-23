@@ -4,6 +4,7 @@ using Core.Abstracts;
 using Core.Abstracts.IRepositories;
 using Data.Repositories;
 using System;
+using Core.Abstracts.IServices;
 namespace Data
 {
     public class UnitOfWork : IUnitOfWork
@@ -18,6 +19,10 @@ namespace Data
 
         private ITagRepository tagRepository;
         public ITagRepository TagRepository => tagRepository = tagRepository ?? new TagRepository(context);
+        private IProjectRepository projectRepository;
+        public IProjectRepository ProjectRepository => projectRepository = projectRepository ?? new ProjectRepository(context);
+        private ICategoryRepository categoryRepository;
+        public ICategoryRepository CategoryRepository => categoryRepository = categoryRepository ?? new CategoryRepository(context);
 
         public void Commit()
         {
